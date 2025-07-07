@@ -328,9 +328,6 @@ void FingerprintEngine::authenticateImpl(int64_t operationId, const std::future<
 
         LOG(INFO) << "onAuthenticated(fid=" << msg.data.authenticated.finger.fid << ")";
 
-        auto bigDataMsg = waitForMessage();
-        CHECK(bigDataMsg.type == GF_FINGERPRINT_BIG_DATA);
-
         if (msg.data.authenticated.finger.fid != 0) {
             const hw_auth_token_t hat = msg.data.authenticated.hat;
             keymaster::HardwareAuthToken authToken;
@@ -578,6 +575,11 @@ void FingerprintEngine::onMessage(const fingerprint_msg_t* msg) {
     LOG(INFO) << __func__;
     LOG(INFO) << "Received message type: " << msg->type;
     CHECK(msg != nullptr);
+
+    if (msg->type == GF_FINGERPRINT_BIG_DATA) {
+        LOG(INFO) << "Skip message type: " << msg->type;
+        return;
+    }
 
     {
         std::lock_guard<std::mutex> lock(mMessageMutex);
