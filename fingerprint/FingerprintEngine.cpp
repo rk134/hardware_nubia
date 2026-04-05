@@ -5,7 +5,7 @@
 
 #include "FingerprintEngine.h"
 #include "Legacy2Aidl.h"
-#include "fingerprint.h"
+#include "include/fingerprint.h"
 
 #include <android-base/logging.h>
 

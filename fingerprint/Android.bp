@@ -18,6 +18,9 @@ cc_binary {
         "Session.cpp",
         "service.cpp",
     ],
+    local_include_dirs: [
+        "include",
+    ],
     shared_libs: [
         "libbase",
         "libutils",

@@ -6,7 +6,7 @@
 #pragma once
 
 #include "LockoutTracker.h"
-#include "fingerprint.h"
+#include "include/fingerprint.h"
 
 #include <aidl/android/hardware/biometrics/fingerprint/ISessionCallback.h>
 #include <android/binder_to_string.h>
